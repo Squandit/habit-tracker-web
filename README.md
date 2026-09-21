@@ -19,3 +19,17 @@ py webapp.py                  # web app, then open http://127.0.0.1:5000
 
 The database (`habits.db`) is not committed. It is created automatically the
 first time you run `app.py`.
+
+## Tailwind
+
+`src/input.css` is the file you write. Tailwind scans the HTML and JS, then
+writes `dist/output.css`, which `index.html` links.
+
+```
+npm install     # once, on a new machine
+npm run dev     # watch and rebuild on save
+npm run build   # one-off minified build
+```
+
+The theme is Catppuccin Mocha, defined in the `@theme` block in
+`src/input.css`. Change the hexes there and every utility follows.

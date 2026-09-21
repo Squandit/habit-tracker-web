@@ -37,25 +37,20 @@ def get_habits_list():
 
 @app.post('/api/add-habit')
 def add_habit():
-    data = request.get_json(silent=True) or {}
-    name = str(data.get('name', '')).strip()
-    description = str(data.get('description', '')).strip() or None
-
+    data=request.get_json(silent=True) or {}
+    name = data.get('name', '')
+    description = data.get('description', '') or None
     if not name:
-        return jsonify(error='Habit name is required.'), 400
+        return jsonify({'error': 'Name is required'}), 400
 
     db = get_db()
     try:
-        cursor = db.execute(
+        db.execute(
             'INSERT INTO habits (name, description) VALUES (?, ?)',
-            (name, description),
+            (name, description)
         )
         db.commit()
     except sqlite3.IntegrityError:
-        return jsonify(error='That habit already exists.'), 409
+        return jsonify({'error': 'Habit with this name already exists'}), 409
 
-    habit = db.execute(
-        'SELECT id, name, description, created_at FROM habits WHERE id = ?',
-        (cursor.lastrowid,),
-    ).fetchone()
-    return jsonify(habit=dict(habit)), 201
+    return jsonify(ok=True), 201
