@@ -1,0 +1,17 @@
+# Local database - your habit data, not code
+habits.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / Tailwind
+node_modules/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
