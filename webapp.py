@@ -30,7 +30,7 @@ def index():
 @app.get('/api/habits-list')
 def get_habits_list():
     habits = get_db().execute(
-        'SELECT id, name, description, created_at FROM habits ORDER BY id'
+        'SELECT id, name, description FROM habits ORDER BY id'
     ).fetchall()
     return jsonify(habits=[dict(habit) for habit in habits])
 

@@ -1,41 +1,26 @@
 const habitList = document.querySelector('#habit-list');
-const addHabitButton = document.querySelector('#add-habit-btn');
 
 async function loadHabits() {
-	try {
-		const response = await fetch('/api/habits-list');
+  const response = await fetch('/api/habits-list');
+  const data = await response.json();
 
-		if (!response.ok) {
-			throw new Error(`Request failed: ${response.status}`);
-		}
+  habitList.replaceChildren();
 
-		const data = await response.json();
-		habitList.replaceChildren();
+  for (const habit of data.habits) {
+    const article = document.createElement('article');
+    article.className = 'habit-card';
 
-		if (data.habits.length === 0) {
-			habitList.textContent = 'No habits yet.';
-			return;
-		}
+    const name = document.createElement('h3');
+    name.className = 'habit-name';
+    name.textContent = habit.name.charAt(0).toUpperCase() + habit.name.slice(1);
 
-		for (const habit of data.habits) {
-			const habitElement = document.createElement('article');
-			const name = document.createElement('h2');
-			const description = document.createElement('p');
+    const description = document.createElement('p');
+    description.className = 'habit-description';
+    description.textContent = habit.description || 'No description';
 
-			name.textContent = habit.name;
-			description.textContent = habit.description || 'No description';
-			habitElement.append(name, description);
-			habitList.append(habitElement);
-		}
-	} catch (error) {
-		habitList.textContent = 'Could not load habits.';
-		console.error(error);
-	}
-}
-
-function addHabit() {
-  var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+    article.append(name, description);
+    habitList.append(article);
+  }
 }
 
 loadHabits();

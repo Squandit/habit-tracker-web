@@ -1,0 +1,133 @@
+.add-habit-button {
+  background-color: #415a77;
+  color: #e0e1dd;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  transition: background-color 0.5s ease;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+}
+
+.add-habit-button:hover {
+  background-color: #778da9;
+}
+
+.habit-input {
+  background-color: #1b263b;
+  color: #e0e1dd;
+  border: 1px solid #415a77;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  position: absolute;
+  top: 200px;
+  left: 300px;
+}
+
+.habit-input:focus {
+  outline: none;
+  background-color: #243450;
+}
+
+.habit-input-description {
+  background-color: #1b263b;
+  color: #e0e1dd;
+  border: 1px solid #415a77;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  position: absolute;
+  top: 250px;
+  left: 300px;
+}
+
+.habit-input-description:focus {
+  outline: none;
+  background-color: #243450;
+}
+
+.habits-list {
+  color: #e0e1dd;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.add-habit-button:hover {
+  background-color: #778da9;
+}
+
+/* Popup container */
+.habitpopup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.habitpopup .habitpopuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.habitpopup .habitpopuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.habitpopup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
