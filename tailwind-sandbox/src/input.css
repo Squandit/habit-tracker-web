@@ -1,0 +1,30 @@
+/* Everything Tailwind does starts with this one line.
+   It pulls in the reset, the utility classes, and the theme variables. */
+@import "tailwindcss";
+
+/* @theme lets you rename or add design tokens.
+   Defining --color-ink-900 here creates bg-ink-900, text-ink-900, border-ink-900, etc. */
+@theme {
+  --color-ink-950: #0a0a0c;
+  --color-ink-900: #121216;
+  --color-ink-800: #1a1a20;
+  --color-ink-700: #26262f;
+  --color-ink-600: #3a3a47;
+  --color-ink-400: #8b8b9c;
+  --color-ink-200: #d7d7e0;
+
+  --color-flame-500: #ff7a1a;
+  --color-flame-400: #ff9445;
+  --color-flame-300: #ffb377;
+
+  --color-iris-500: #7b5cff;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* A custom utility of your own. Now you can write class="streak-glow" anywhere. */
+@utility streak-glow {
+  box-shadow: 0 0 0 1px --alpha(var(--color-flame-500) / 35%),
+              0 8px 30px -12px --alpha(var(--color-flame-500) / 60%);
+}

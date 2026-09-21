@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tailwind Sandbox - Habit Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- This is the file Tailwind BUILDS. It does not exist until you run `npm run dev`. -->
+<link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<!--
+  HOW TO READ TAILWIND
+  Every class is one CSS declaration.
+    p-6        -> padding: 1.5rem
+    text-2xl   -> font-size: 1.5rem
+    bg-ink-800 -> background-color: #1a1a20   (from @theme in src/input.css)
+  Prefixes are conditions:
+    md:flex        -> only at >=768px wide
+    hover:bg-...   -> only while hovering
+    focus:ring-2   -> only while focused
+  The numbers are a 4px scale: 1=4px, 2=8px, 4=16px, 6=24px, 8=32px.
+-->
+
+<body class="min-h-screen bg-ink-950 font-display text-ink-200 antialiased">
+
+  <div class="mx-auto max-w-3xl px-5 py-10 sm:py-16">
+
+    <!-- HEADER -->
+    <header class="mb-10 flex items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-flame-500">Sunday 21 September</p>
+        <h1 class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">Habits</h1>
+      </div>
+      <button id="add-btn"
+              class="rounded-xl bg-flame-500 px-5 py-3 text-sm font-semibold text-ink-950
+                     transition-colors duration-200
+                     hover:bg-flame-400
+                     focus:outline-none focus:ring-2 focus:ring-flame-300 focus:ring-offset-2 focus:ring-offset-ink-950
+                     active:scale-[0.98]">
+        + Add habit
+      </button>
+    </header>
+
+    <!-- STAT STRIP -->
+    <section class="mb-10 grid grid-cols-3 gap-3">
+      <div class="rounded-2xl border border-ink-700 bg-ink-900 p-5">
+        <p class="font-mono text-xs text-ink-400">STREAK</p>
+        <p class="mt-1 text-3xl font-bold text-flame-400">12</p>
+      </div>
+      <div class="rounded-2xl border border-ink-700 bg-ink-900 p-5">
+        <p class="font-mono text-xs text-ink-400">TODAY</p>
+        <p class="mt-1 text-3xl font-bold text-white">3<span class="text-ink-600">/5</span></p>
+      </div>
+      <div class="rounded-2xl border border-ink-700 bg-ink-900 p-5">
+        <p class="font-mono text-xs text-ink-400">RATE</p>
+        <p class="mt-1 text-3xl font-bold text-iris-500">71<span class="text-lg">%</span></p>
+      </div>
+    </section>
+
+    <!-- HABIT LIST. app.js fills this in. -->
+    <section id="habit-list" class="space-y-3">
+      <p class="font-mono text-sm text-ink-400">Loading habits...</p>
+    </section>
+
+    <p class="mt-12 font-mono text-xs leading-relaxed text-ink-600">
+      Run <span class="text-flame-500">npm run dev</span> in this folder, then open this file.
+      Edit a class, save, refresh. Tailwind rebuilds dist/output.css as you type.
+    </p>
+  </div>
+
+<script>
+// Try the real Flask API. If this file is opened directly (file://) that fetch
+// will fail, so we fall back to sample data and the page still renders.
+const SAMPLE = [
+  { name: 'read',     description: '20 pages before bed', done: true  },
+  { name: 'run',      description: 'easy 5k',             done: true  },
+  { name: 'practice', description: null,                  done: false },
+];
+
+const list = document.querySelector('#habit-list');
+
+function render(habits) {
+  list.replaceChildren();
+  for (const habit of habits) {
+    const card = document.createElement('article');
+    card.className =
+      'group flex items-center gap-4 rounded-2xl border border-ink-700 bg-ink-900 p-5 ' +
+      'transition-all duration-200 hover:border-ink-600 hover:bg-ink-800';
+    if (habit.done) card.classList.add('streak-glow');
+
+    const dot = document.createElement('div');
+    dot.className = habit.done
+      ? 'size-3 shrink-0 rounded-full bg-flame-500'
+      : 'size-3 shrink-0 rounded-full border border-ink-600';
+
+    const text = document.createElement('div');
+    text.className = 'min-w-0 flex-1';
+
+    const name = document.createElement('h2');
+    name.className = 'truncate text-lg font-semibold text-white';
+    name.textContent = habit.name;
+
+    const desc = document.createElement('p');
+    desc.className = 'truncate font-mono text-xs text-ink-400';
+    desc.textContent = habit.description || 'No description';
+
+    text.append(name, desc);
+    card.append(dot, text);
+    list.append(card);
+  }
+}
+
+async function load() {
+  try {
+    const response = await fetch('/api/habits-list');
+    if (!response.ok) throw new Error(response.status);
+    const data = await response.json();
+    render(data.habits.length ? data.habits : SAMPLE);
+  } catch {
+    render(SAMPLE);
+  }
+}
+
+load();
+</script>
+</body>
+</html>
