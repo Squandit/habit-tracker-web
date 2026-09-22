@@ -1,5 +1,4 @@
 const habitList = document.querySelector('#habit-list');
-import { easings } from 'animejs';
 async function loadHabits() {
   const response = await fetch('/api/habits-list');
   const data = await response.json();
@@ -75,16 +74,31 @@ const exitPopupButton = document.querySelector('#exit-popup');
 const modalOverlay = document.querySelector('.modal-overlay');
 
 addHabitButton.addEventListener('click', () => {
-  waapi.animate('.modal-overlay', {
-  x: '17rem',
-  rotate: 0,
-  ease: spring({ bounce: .35 }), // Spring physics
-  });
+  newHabitName.value = '';
+  newHabitDescription.value = '';
   modalOverlay.classList.remove('hidden');
+  anime({
+    targets: '.new-habit-popup-box',
+    translateY: ['100%', '0%'],
+    duration: 350,
+    easing: 'easeOutCubic'
+  });
 });
 
 exitPopupButton.addEventListener('click', () => {
-  modalOverlay.classList.add('hidden');
+  anime({
+    targets: '.new-habit-popup-box',
+    translateY: ['0%', '100%'],
+    duration: 250,
+    easing: 'easeInCubic',
+    complete: () => modalOverlay.classList.add('hidden')
+  });
+  loadHabits();
+});
+
+addHabitConfirmButton.addEventListener('click', async () => {
+  await createHabit();
+  loadHabits();
 });
 
 loadHabits();
