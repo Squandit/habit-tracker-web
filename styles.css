@@ -80,6 +80,9 @@ body {
   border: 1px solid var(--surface-1);
   border-radius: 16px;
   padding: 20px;
+  justify-content: space-between;
+  display: flex;
+  gap: 12px;
   transition: background-color 0.15s ease;
 }
 
@@ -132,4 +135,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.habit-checkbox {
+  accent-color: var(--green);
+  color: var(--text);
+  width: 16px;
+  height: 16px;
 }

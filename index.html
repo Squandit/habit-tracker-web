@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Habit Tracker</title>
+    <!-- Google Fonts: Nunito for regular text, JetBrains Mono for the
+         monospace bits (descriptions, loading message). -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,11 +24,22 @@
             + Add Habit
         </button>
       </div>
+        <!-- app.js clears and rebuilds everything inside this div on
+             every load, the message below only shows briefly before
+             the real habit cards replace it. -->
         <div class="habit-list" id="habit-list" aria-live="polite">
             <p class="habit-list-message">Loading habits...</p>
-            <span class="habit-checkbox" id="habit-checkbox"></span>
+            <!-- Leftover from an earlier attempt, unused now that each
+                 habit gets its own real checkbox built in app.js.
+                 Safe to delete. -->
+            <span class="habit-checkbox" id="habit-checkbox"></span>
+        </div>
       </div>
-    </div>
+    <!-- These two need to load BEFORE app.js, since app.js calls
+         anime() and confetti() directly and they need to already
+         exist as global functions by the time it runs. -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.browser.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
