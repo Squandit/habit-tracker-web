@@ -16,13 +16,17 @@
   <body>
     <div class="page">
       <h1 class="page-title">Habit Tracker</h1>
-
-      <h2 class="section-title">Current habits</h2>
-      <div class="habit-list" id="habit-list" aria-live="polite">
-        <p class="habit-list-message">Loading habits...</p>
+      <div class="section-header">
+          <h2 class="section-title">Current habits</h2>
+          <button class="add-habit-button" id="add-habit">
+            + Add Habit
+        </button>
+      </div>
+        <div class="habit-list" id="habit-list" aria-live="polite">
+            <p class="habit-list-message">Loading habits...</p>
+            <span class="habit-checkbox" id="habit-checkbox"></span>
       </div>
     </div>
-
     <script src="app.js"></script>
   </body>
 </html>

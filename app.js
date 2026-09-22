@@ -23,4 +23,18 @@ async function loadHabits() {
   }
 }
 
+const habitCheckbox = document.querySelector('#habit-checkbox');
+
+
+async function checkHabitCompletion() {
+	const response = await fetch('/api/check-habit-completion');
+	const data = await response.json();
+
+	if (data.completed = true) {
+		habitCheckbox.replaceChildren
+
+		habitCheckbox.textContent = ''
+	}
+}
+
 loadHabits();

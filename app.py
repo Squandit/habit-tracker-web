@@ -17,7 +17,7 @@ cursor.execute(habits)
 log_habits = """CREATE TABLE IF NOT EXISTS log_habits (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     habit_id INTEGER NOT NULL,
-    completed_date DATE NOT NULL,
+    completed_date DATE NOT NULL UNIQUE,
     logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (habit_id) REFERENCES habits (id)
 )"""

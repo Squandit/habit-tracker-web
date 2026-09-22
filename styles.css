@@ -1,13 +1,4 @@
-/* ==========================================================================
-   Colours. Catppuccin Mocha, same values that were in src/input.css.
-
-   A custom property is just a named value. Define it once here, use it
-   anywhere below with var(--name). Change the hex in one place and every
-   rule that uses it follows.
-   ========================================================================== */
-
 :root {
-  /* backgrounds, darkest to lightest */
   --crust:     #11111b;
   --mantle:    #181825;
   --base:      #1e1e2e;
@@ -15,17 +6,14 @@
   --surface-1: #45475a;
   --surface-2: #585b70;
 
-  /* borders and muted UI */
   --overlay-0: #6c7086;
   --overlay-1: #7f849c;
   --overlay-2: #9399b2;
 
-  /* text */
   --subtext-0: #a6adc8;
   --subtext-1: #bac2de;
   --text:      #cdd6f4;
 
-  /* accents */
   --rosewater: #f5e0dc;
   --flamingo:  #f2cdcd;
   --pink:      #f5c2e7;
@@ -41,19 +29,10 @@
   --blue:      #89b4fa;
   --lavender:  #b4befe;
 
-  /* fonts, loaded by the <link> tags in index.html */
   --sans: 'Nunito', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
-
-/* ==========================================================================
-   Base
-   ========================================================================== */
-
-/* Makes width and height include padding and border instead of adding to
-   them. Without this a 400px box with 20px padding is actually 440px wide,
-   which is the cause of about half of all "why doesn't this line up" bugs. */
 *,
 *::before,
 *::after {
@@ -61,77 +40,47 @@
 }
 
 body {
-  margin: 0;                      /* browsers add 8px by default */
-  min-height: 100vh;              /* at least the full window height, so the
-                                     background covers the page even when
-                                     there is barely any content */
+  margin: 0;
+  min-height: 100vh;
   background-color: var(--base);
   color: var(--text);
   font-family: var(--sans);
-  -webkit-font-smoothing: antialiased;   /* slightly lighter text rendering,
-                                            looks better on dark backgrounds */
+  -webkit-font-smoothing: antialiased;
 }
 
-
-/* ==========================================================================
-   Layout
-   ========================================================================== */
-
-/* The centred column everything sits in.
-   max-width stops it stretching across a wide monitor.
-   margin: 0 auto centres it: 0 top and bottom, auto left and right, and
-   "auto" means the browser splits the leftover space evenly on each side. */
 .page {
   max-width: 672px;
   margin: 0 auto;
   padding: 48px 24px;
 }
 
-
-/* ==========================================================================
-   Headings
-   ========================================================================== */
-
 .page-title {
   margin: 0;
   font-size: 40px;
   font-weight: 800;
-  letter-spacing: -0.02em;   /* pulls big text together slightly, stops it
-                                looking gappy */
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
 .section-title {
-  margin: 32px 0 16px;       /* top, left+right, bottom */
+  margin: 32px 0 16px;
   font-size: 18px;
   font-weight: 700;
   color: var(--subtext-1);
 }
 
-
-/* ==========================================================================
-   Habit list
-   ========================================================================== */
-
-/* flex with a column direction stacks the children vertically.
-   gap puts space BETWEEN them, with none before the first or after the last,
-   which is why this beats putting a margin on every card. */
 .habit-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* One habit. The four properties that make it a rectangle:
-   background-color fills it, border outlines it, border-radius rounds the
-   corners, padding pushes the text away from the edges. */
 .habit-card {
   background-color: var(--surface-0);
   border: 1px solid var(--surface-1);
   border-radius: 16px;
   padding: 20px;
-  transition: background-color 0.15s ease;   /* animates the hover instead of
-                                                snapping to it */
+  transition: background-color 0.15s ease;
 }
 
 .habit-card:hover {
@@ -152,9 +101,35 @@ body {
   color: var(--subtext-0);
 }
 
-/* Shown while the fetch is in flight, and if it fails. */
 .habit-list-message {
   font-family: var(--mono);
   font-size: 13px;
   color: var(--overlay-1);
+}
+
+.add-habit-button {
+  background: var(--lavender);
+  border-radius: 10px;
+  font-family: var(--sans);
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.15s ease;
+}
+
+.add-habit-button:hover {
+  background: #7c90ff
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habits-list-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
