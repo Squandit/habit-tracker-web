@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -17,14 +18,24 @@
     <div class="page">
       <h1 class="page-title">Habit Tracker</h1>
       <div class="section-header">
-          <h2 class="section-title">Current habits</h2>
-          <button class="add-habit-button" id="add-habit">
-            + Add Habit
+        <h2 class="section-title">Current habits</h2>
+        <button class="add-habit-button" id="add-habit">
+          + Add Habit
         </button>
       </div>
         <div class="habit-list" id="habit-list" aria-live="polite">
-            <p class="habit-list-message">Loading habits...</p>
-            <span class="habit-checkbox" id="habit-checkbox"></span>
+          <p class="habit-list-message">No habits yet. Click <em class="bold">+ Add Habit</em> to add one!</p>
+          <span class="habit-checkbox" id="habit-checkbox"></span>
+        </div>
+        <div class="modal-overlay hidden">
+          <div class="new-habit-popup-box" id="new-habit-popup-box">
+            <button class="exit-popup" id="exit-popup">x</button>
+            <input class="new-habit-name-input" id="new-habit-name-input" placeholder="Habit name..."></input>
+            <input class="new-habit-description-input" id="new-habit-description-input" placeholder="Habit description..."></input>
+            <button class="add-habit-button-popup" id="add-habit-confirm">
+              + Add Habit
+            </button>
+          </div>
         </div>
       </div>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>

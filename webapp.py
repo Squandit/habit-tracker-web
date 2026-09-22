@@ -1,7 +1,7 @@
 from pathlib import Path
 import sqlite3
 import datetime
-from flask import Flask, g, jsonify, request, send_from_directory
+from flask import Flask, g, jsonify, request, send_from_directory  # pyright: ignore[reportMissingImports]
 
 BASE_DIR = Path(__file__).parent
 WEB_DIR = BASE_DIR
@@ -97,6 +97,7 @@ def unlog_habit():
             'DELETE FROM log_habits WHERE habit_id = ? AND completed_date = ?',
             (habitid, date)
         )
+        db.commit()
     
     except sqlite3.IntegrityError:
             return jsonify({'error': 'Habit with this name does not exist'}), 409 

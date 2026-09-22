@@ -143,3 +143,93 @@ body {
   width: 16px;
   height: 16px;
 }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.new-habit-popup-box {
+  position: relative;
+  background: var(--surface-0);
+  border-radius: 16px 16px 0 0;
+  padding: 24px;
+  width: 22%;
+  height: 40vh;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.new-habit-name-input, .new-habit-description-input {
+  background: var(--mantle);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  margin: 12px 0px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  transition: background-color 0.15s ease;
+  text-align: center;
+}
+
+.new-habit-name-input::placeholder,
+.new-habit-description-input::placeholder {
+  color: var(--overlay-1);
+}
+
+.new-habit-name-input:focus,
+.new-habit-description-input:focus {
+  outline: none;
+  border-color: none;
+  background: var(--base)
+}
+
+.add-habit-button-popup {
+  background: var(--lavender);
+  border-radius: 10px;
+  font-family: var(--sans);
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 12px auto;
+  transition: background-color 0.15s ease;
+  display: block;
+}
+
+.add-habit-button-popup:hover {
+  background: #7c90ff
+}
+.exit-popup {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--red);
+  border-radius: 50%;
+  font-family: var(--sans);
+  border: none;
+  font-weight: 500;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  transition: background-color 0.15s ease;
+  display: block;
+}
+
+.exit-popup:hover {
+  background: #f83e73;
+}
+
+.bold {
+  font-weight: 900;
+  font-style: normal;
+}
