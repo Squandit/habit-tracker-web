@@ -22,6 +22,10 @@ async function loadHabits() {
     checkbox.dataset.habitId = habit.id;
     checkbox.checked = habit.done_today;
 
+    const deletebutton = document.createElement('button')
+    deletebutton.className = 'delete-habit-button'
+    deletebutton.textContent = 'x'
+
     checkbox.addEventListener('change', async () => {
   if (checkbox.checked) {
     anime({
@@ -99,7 +103,22 @@ exitPopupButton.addEventListener('click', () => {
 addHabitConfirmButton.addEventListener('click', async () => {
   await createHabit();
   loadHabits();
-  modalOverlay.classList.add('hidden')
+  anime({
+    targets: '.new-habit-popup-box',
+    translateY: ['0%', '100%'],
+    duration: 250,
+    easing: 'easeInCubic',
+    complete: () => modalOverlay.classList.add('hidden')
+  });
 });
+
+
+const deleteconfirm = document.querySelector('#delete-confirm')
+
+deletebutton.addEventListener('click', async () => {
+  deleteconfirm.classList.remove("hidden");
+})
+
+
 
 loadHabits();

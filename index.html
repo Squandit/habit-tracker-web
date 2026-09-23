@@ -26,6 +26,16 @@
         <div class="habit-list" id="habit-list" aria-live="polite">
           <p class="habit-list-message">No habits yet. Click <em class="bold">+ Add Habit</em> to add one!</p>
           <span class="habit-checkbox" id="habit-checkbox"></span>
+          <span class="delete-habit" id="delete-habit"></span>
+        </div>
+        <div class="delete-confirm hidden">
+          <div class="delete-confirm-popup-box" id="delete-confirm-popup-box">
+            <button class="exit-delete-popup" id="exit-delete-popup">x</button>
+            <h2 class="confirm-delete-text">Are you sure you want to delete this habit?</h2>
+            <button class="delete-confirm-button" id="delete-confirm-button">
+              I'm sure, delete
+            </button>
+          </div>
         </div>
         <div class="modal-overlay hidden">
           <div class="new-habit-popup-box" id="new-habit-popup-box">

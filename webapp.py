@@ -45,7 +45,7 @@ def add_habit():
     name = name.strip().title()
     description = data.get('description', '') or None
     if not name:
-        return jsonify({'error': 'Name is required'}), 400
+        return jsonify({'error': 'Name is required'}), 400 # look error management im so cool :D
 
     db = get_db()
     try:
@@ -55,7 +55,27 @@ def add_habit():
         )
         db.commit()
     except sqlite3.IntegrityError:
-        return jsonify({'error': 'Habit with this name already exists'}), 409
+        return jsonify({'error': 'Habit with this name already exists'}), 409 # look error management im so cool :D
+
+    return jsonify(ok=True), 200
+
+@app.delete('/api/delete-habit')
+def delete_habit():
+    data=request.get_json(silent=True) or {}
+    name = data.get('name', '')
+    name = name.strip().title()
+    if not name:
+        return jsonify({'error': 'Name is required'}), 400
+
+    db = get_db()
+    try:
+        db.execute(
+            'DELETE FROM habits WHERE name = ?',
+            (name,)
+        )
+        db.commit()
+    except sqlite3.IntegrityError:
+        return jsonify({'error': 'Habit with this name does not exist'}), 409 # look error management im so cool :D
 
     return jsonify(ok=True), 200
 
