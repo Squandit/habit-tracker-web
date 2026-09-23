@@ -99,6 +99,7 @@ exitPopupButton.addEventListener('click', () => {
 addHabitConfirmButton.addEventListener('click', async () => {
   await createHabit();
   loadHabits();
+  modalOverlay.classList.add('hidden')
 });
 
 loadHabits();
